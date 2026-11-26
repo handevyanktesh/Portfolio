@@ -1,96 +1,28 @@
-# Vyanktesh Hande — Developer Portfolio
+# Portfolio – Vyanktesh Hande
 
-A modern, responsive portfolio built with React, Vite, and Tailwind CSS. The
-contact form writes directly to a Firebase Firestore collection.
+A static site: plain HTML, CSS and JavaScript. No build step, no dependencies.
 
-## Stack
+## Files
+- `index.html`  page content (text, sections, links)
+- `styles.css`  all styling; colors and theme are the variables at the top (`:root`)
+- `script.js`   the two interactive demos (Rigora compatibility check, MindMap rules)
+- `assets/profile.jpg`  your photo
 
-- React 19 + Vite
-- Tailwind CSS
-- Firebase (Firestore) for the contact form
-- lucide-react for icons
+## Run locally
+Open `index.html` in a browser, or run `npx serve` in this folder.
 
-## Folder structure
+## Deploy (free)
+**Vercel:** push this folder to a GitHub repo, then Import Project on vercel.com. Framework preset: Other. No build command, output directory is the root.
+**Netlify:** drag and drop this folder onto app.netlify.com/drop.
+**GitHub Pages:** push to a repo, then Settings > Pages > Deploy from branch (main, root).
 
-```
-src/
-  components/     Reusable UI pieces (Navbar, ContactForm, ProjectCard, ...)
-  sections/       Page sections (Hero, About, Skills, Projects, Contact, Footer)
-  data/           Static content (skills.js, projects.js) — edit these to update copy
-  lib/            firebase.js — Firestore setup
-```
+## Before you publish (checklist)
+- [ ] Replace the two GitHub links in `index.html` with the exact repo URLs for Rigora and MindMap.
+- [ ] Confirm the LinkedIn URL (guessed as linkedin.com/in/vyanktesh-hande).
+- [ ] Confirm MindMap's status text matches reality (resume vs. project notes).
+- [ ] Add a resume button: put `resume.pdf` in `assets/` and link to `assets/resume.pdf`.
+- [ ] Once Rigora is deployed, add a "Live demo" link next to its GitHub link.
+- [ ] Buy a domain (for example yourname.dev) and connect it in your host's settings.
 
-## 1. Install dependencies
-
-```bash
-npm install
-```
-
-## 2. Set up Firebase
-
-1. Create a project at console.firebase.google.com.
-2. Enable **Firestore Database** (start in production mode).
-3. Go to **Project settings -> General -> Your apps**, add a Web app, and copy
-   the config values.
-4. Copy `.env.example` to `.env` and fill in the values:
-
-```bash
-cp .env.example .env
-```
-
-```
-VITE_FIREBASE_API_KEY=...
-VITE_FIREBASE_AUTH_DOMAIN=...
-VITE_FIREBASE_PROJECT_ID=...
-VITE_FIREBASE_STORAGE_BUCKET=...
-VITE_FIREBASE_MESSAGING_SENDER_ID=...
-VITE_FIREBASE_APP_ID=...
-```
-
-5. In Firestore, set up rules that allow public **create-only** access to the
-   `contact_messages` collection so visitors can submit the form but can't
-   read or edit other submissions:
-
-```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /contact_messages/{id} {
-      allow create: if request.resource.data.keys().hasAll(['name','email','phone','subject','message'])
-                    && request.resource.data.name is string
-                    && request.resource.data.email is string;
-      allow read, update, delete: if false;
-    }
-  }
-}
-```
-
-Every submission is stored as a document in `contact_messages` with `name`,
-`email`, `phone`, `subject`, `message`, and a `createdAt` server timestamp.
-
-## 3. Run locally
-
-```bash
-npm run dev
-```
-
-## 4. Build for production
-
-```bash
-npm run build
-```
-
-## 5. Deploy on Vercel
-
-1. Push this project to a GitHub repo.
-2. Import the repo in vercel.com.
-3. Add the same six `VITE_FIREBASE_*` variables under **Project Settings ->
-   Environment Variables**.
-4. Deploy — Vercel auto-detects Vite (`npm run build`, output `dist`).
-
-## Editing content
-
-- **Projects** — `src/data/projects.js`
-- **Skills** — `src/data/skills.js`
-- **Bio / education** — `src/sections/About.jsx`
-- **Contact links** — `src/sections/Contact.jsx`
+## Redesigning later
+Content lives only in `index.html`, styling only in `styles.css`. You can restyle everything without touching `script.js`. Keep the element ids (`cpu`, `mb`, `ram`, `gpu`, `psu`, `res`, `verdict`, `face`, `away`, `awayv`, `mm`) if you change the demo markup.

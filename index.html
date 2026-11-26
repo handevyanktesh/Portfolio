@@ -1,14 +1,146 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Vyanktesh Hande — AI Undergraduate & Full Stack Developer. Software Engineer, Full Stack Developer, and AI Engineer portfolio." />
-    <title>Vyanktesh Hande — Full Stack &amp; AI Engineer</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vyanktesh Hande – AI and full-stack developer</title>
+<meta name="description" content="Portfolio of Vyanktesh Hande, B.Tech AI student in Pune. Try the compatibility check from Rigora, his AI PC builder.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🧠%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div class="wrap">
+<a class="brand" href="#top">Vyanktesh Hande</a>
+<nav aria-label="Main"><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+<div>
+<h1>I build AI features that check their own work.</h1>
+<p class="lead">I’m Vyanktesh, a B.Tech AI student in Pune. I build full-stack products where an AI makes the suggestion and my own code verifies it. Try the check on the right, it’s the one Rigora runs on every AI-made PC build.</p>
+<div class="btns">
+<a class="btn primary" href="#projects">See my projects</a>
+<a class="btn" href="mailto:handevyanktesh47@gmail.com">Email me</a>
+</div>
+</div>
+
+<div class="card" id="checker">
+<h2>Try the Rigora compatibility check</h2>
+<p class="sub">Change any part and the verdict updates. Try the RAM first.</p>
+<div class="grid">
+<div><label for="cpu">Processor</label><select id="cpu"></select></div>
+<div><label for="mb">Motherboard</label><select id="mb"></select></div>
+<div><label for="ram">Memory</label><select id="ram"></select></div>
+<div><label for="gpu">Graphics card</label><select id="gpu"></select></div>
+<div><label for="psu">Power supply</label><select id="psu"></select></div>
+</div>
+<ul class="res" id="res" role="status" aria-live="polite"></ul>
+<p class="verdict" id="verdict"></p>
+<p class="note">Sample parts with simplified power figures. Same three rules as the project: socket match, memory type match, and power supply wattage with a 20% safety margin.</p>
+</div>
+</div>
+
+<section id="projects"><div class="wrap">
+<h2>Projects</h2>
+
+<article class="proj">
+<div class="proj-head"><h3>Rigora</h3><span class="status">Full-stack, built end to end</span></div>
+<p class="tag">AI-powered PC builder and compatibility assistant</p>
+<div class="flow" aria-label="Rigora pipeline">
+<span class="n">Real parts catalog</span><span class="ar">›</span>
+<span class="n">Gemini picks a build</span><span class="ar">›</span>
+<span class="n check">Compatibility check</span><span class="ar">›</span>
+<span class="n">Verified build</span>
+</div>
+<div class="cols">
+<div>
+<p>Give Rigora a budget and a use case and it recommends a full set of parts. The AI never works from memory, and no build reaches the user unchecked.</p>
+<ul>
+<li><strong>The AI only sees real products.</strong> Gemini chooses from in-stock parts pulled from the catalog, so it can’t invent a part or a price.</li>
+<li><strong>Every build is re-checked.</strong> A separate compatibility service verifies it before the result is shown, and returns the reason for every failure.</li>
+<li><strong>One editor for every build.</strong> Builds made by the AI and by hand open in the same editor, with live checks.</li>
+</ul>
+</div>
+<div>
+<p>Also includes JWT login, cart, wishlist, saved builds, a dashboard, and an admin panel with role-based access.</p>
+<p class="meta">React, Node.js, Express, MongoDB Atlas, Tailwind CSS, JWT, Gemini API</p>
+<p class="links"><a href="https://github.com/handevyanktesh">View code on GitHub</a></p>
+</div>
+</div>
+</article>
+
+<article class="proj">
+<div class="proj-head"><h3>MindMap</h3><span class="status">In development</span></div>
+<p class="tag">Real-time student attention and confusion detector, team project</p>
+<div class="flow" aria-label="MindMap pipeline">
+<span class="n">Webcam in browser</span><span class="ar">›</span>
+<span class="n">Face landmarks</span><span class="ar">›</span>
+<span class="n check">Reliable face?</span><span class="ar">›</span>
+<span class="n">Eye, gaze, head features</span><span class="ar">›</span>
+<span class="n">Attention estimate</span>
+</div>
+<div class="cols">
+<div>
+<p>MindMap estimates how engaged a student is during an online class and shows the teacher a live summary, while keeping video private. Results are estimates of behaviour, not a diagnosis.</p>
+<ul>
+<li><strong>Video never leaves the browser.</strong> Only numbers such as eye openness, gaze and head angles are sent on.</li>
+<li><strong>No face means no guess.</strong> If a face can’t be found reliably, the system reports no confident reading instead of scoring the student as inattentive.</li>
+<li><strong>Behaviour over time, not single frames.</strong> Signals are combined across a time window, so a quick glance away isn’t treated as distraction.</li>
+</ul>
+<p>Current focus: feature extraction, model comparison, scoring and the live teacher dashboard.</p>
+<p class="meta">React, MediaPipe Face Mesh, FastAPI, WebSockets, MongoDB, scikit-learn</p>
+<p class="links"><a href="https://github.com/handevyanktesh">View code on GitHub</a></p>
+</div>
+<div class="card demo">
+<h2>How the system treats missing and brief signals</h2>
+<p class="sub">A simplified demo of the design rules, not the trained model.</p>
+<label class="chk"><input type="checkbox" id="face" checked> Face detected</label>
+<label for="away">Looking away for <span id="awayv">1.0</span> s</label>
+<input type="range" id="away" min="0" max="8" step="0.5" value="1">
+<p class="out" id="mm" role="status" aria-live="polite"></p>
+</div>
+</div>
+</article>
+</div></section>
+
+<section id="skills"><div class="wrap">
+<h2>Skills</h2>
+<dl class="skills">
+<dt>Languages</dt><dd>Python, JavaScript, Java, C++, SQL</dd>
+<dt>Frontend</dt><dd>React, Tailwind CSS, HTML, CSS, Bootstrap</dd>
+<dt>Backend</dt><dd>Node.js, Express, FastAPI, REST APIs, WebSockets, JWT</dd>
+<dt>Data and ML</dt><dd>MongoDB, MySQL, scikit-learn, NumPy, MediaPipe</dd>
+<dt>Tools</dt><dd>Git, GitHub, VS Code, Postman</dd>
+</dl>
+</div></section>
+
+<section id="about"><div class="wrap">
+<h2>About</h2>
+<div class="about">
+<img alt="Portrait of Vyanktesh Hande" src="assets/profile.jpg" width="200" height="200">
+<div>
+<p>I’m studying B.Tech in Artificial Intelligence at GH Raisoni College of Engineering and Management in Pune, graduating in 2027.</p>
+<p>I like projects where the interesting part is the design decision: what the AI is allowed to see, what has to be checked, and what happens when data is missing. I’ve solved 200+ problems on LeetCode and GeeksforGeeks, and completed the NxtWave CCBP 3.0 software development program.</p>
+</div>
+</div>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap">
+<h2>Let’s build something useful.</h2>
+<p>I’m open to internships, entry-level roles and collaborations. Email is the quickest way to reach me.</p>
+<div class="btns">
+<a class="btn primary" href="mailto:handevyanktesh47@gmail.com">handevyanktesh47@gmail.com</a>
+<a class="btn" href="https://github.com/handevyanktesh">GitHub</a>
+<a class="btn" href="https://www.linkedin.com/in/vyanktesh-hande">LinkedIn</a>
+</div>
+</div></section>
+</main>
+<footer><div class="wrap">© 2026 Vyanktesh Hande. Pune, Maharashtra.</div></footer>
+
+<script src="script.js" defer></script>
+</body>
 </html>
